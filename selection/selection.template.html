@@ -1,0 +1,35 @@
+<div class="row input-group">
+  <span class="input-group-addon">日期：</span>
+	<input type="text" class="form-control datepicker" data-ng-init="$ctrl.init()"></input>
+</div>
+<div class="row">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>編號</th>
+				<th>名字</th>
+				<th>訂購</th>
+			</tr>
+		</thead>
+		<tr ng-repeat="x in $ctrl.phones">
+			<td>{{ x.id | idnum }}</td>
+			<td>{{ x.name }}</td>
+			<td>
+				<select ng-disabled="!x.self || !$ctrl.edit" class="form-control">
+        <option ng-selected="x.selection === opt.id" ng-repeat="opt in $ctrl.options">{{opt.value}}</option>
+      </select>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<ul class="pagination text-center">
+			<li ng-class="$ctrl.edit ? '' : 'active'"><a href="#!/order/view">顯示</a></li>
+			<li ng-class="$ctrl.edit ? 'active' : ''"><a href="#!/order/edit">編輯</a></li>
+		</ul>
+	</div>
+	<div class="col-sm-6">
+		<button ng-show="$ctrl.edit" type="submit" class="btn btn-primary pull-right ng-hide">確定</button>
+	</div>
+</div>
